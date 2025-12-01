@@ -19,3 +19,8 @@ build-backend = "poetry.core.masonry.api"
 create-boilerplate = "aoc2025.main:create_boilerplate"
 solve-all = "aoc2025.main:solve_all"
 
+
+[dependency-groups]
+dev = [
+    "black (>=25.11.0,<26.0.0)"
+]
