@@ -1,10 +1,17 @@
 from pathlib import Path
 import textwrap
+import importlib
 
 
 def solve_all():
     for day in _list_days():
-        print(day)
+        print(day + "-1:")
+        module = importlib.import_module("aoc2025.solvers." + day + ".problem1")
+        print("  " + module.solve("foo"))
+        print(day + "-2:")
+        module = importlib.import_module("aoc2025.solvers." + day + ".problem2")
+        print("  " + module.solve("foo"))
+        print("")
 
 
 def create_boilerplate():
@@ -13,8 +20,8 @@ def create_boilerplate():
         open("./src/aoc2025/solvers/" + day + "/__init__.py", "a").close()
         solver_content = textwrap.dedent(
             """
-        def solve(input):
-            print("TODO")
+        def solve(problem_input):
+            return "TODO"
             """
         ).lstrip()
         with open("./src/aoc2025/solvers/" + day + "/problem1.py", "w") as f:
