@@ -3,6 +3,7 @@ import textwrap
 import unittest
 
 
+@unittest.skip("future problem")
 class TestProblem(unittest.TestCase):
 
     def test_example_input(self):
