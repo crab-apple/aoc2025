@@ -9,10 +9,10 @@ def solve_all():
             problem_input = file.read()
         print(day + "-1:")
         module = importlib.import_module("aoc2025.solvers." + day + ".problem1")
-        print("  " + module.solve(problem_input))
+        print("  " + str(module.solve(problem_input)))
         print(day + "-2:")
         module = importlib.import_module("aoc2025.solvers." + day + ".problem2")
-        print("  " + module.solve(problem_input))
+        print("  " + str(module.solve(problem_input)))
         print("")
 
 

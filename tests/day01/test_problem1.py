@@ -3,14 +3,21 @@ import textwrap
 import unittest
 
 
-@unittest.skip("future problem")
 class TestProblem(unittest.TestCase):
 
     def test_example_input(self):
         example_input = textwrap.dedent(
             """
-        EXAMPLE
-        INPUT
+            L68
+            L30
+            R48
+            L5
+            R60
+            L55
+            L1
+            L99
+            R14
+            L82
         """
         ).strip()
-        self.assertEqual("TODO EXPECTED OUTPUT", solve(example_input))
+        self.assertEqual(3, solve(example_input))

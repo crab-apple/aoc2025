@@ -1,0 +1,76 @@
+from aoc2025.solvers.day01.dial import Dial
+import unittest
+
+
+class TestDial(unittest.TestCase):
+
+    def test_starts_at_0(self):
+        # Given
+        dial = Dial()
+
+        # Then
+        self.assertEqual(0, dial.pointer())
+
+    def test_rotates_right(self):
+        # Given
+        dial = Dial()
+
+        # When
+        dial.rotate("R", 12)
+
+        # Then
+        self.assertEqual(12, dial.pointer())
+
+    def test_rotates_multiple_times(self):
+        # Given
+        dial = Dial()
+        dial.rotate("R", 1)
+
+        # When
+        dial.rotate("R", 2)
+
+        # Then
+        self.assertEqual(3, dial.pointer())
+
+    def test_rotates_left(self):
+        # Given
+        dial = Dial()
+        dial.rotate("R", 10)
+
+        # When
+        dial.rotate("L", 3)
+
+        # Then
+        self.assertEqual(7, dial.pointer())
+
+    def test_rotating_right_wraps(self):
+        # Given
+        dial = Dial()
+
+        # When
+        dial.rotate("R", 50)
+        dial.rotate("R", 50)
+
+        # Then
+        self.assertEqual(0, dial.pointer())
+
+    def test_rotating_left_wraps_to_0(self):
+        # Given
+        dial = Dial()
+
+        # When
+        dial.rotate("L", 50)
+        dial.rotate("L", 50)
+
+        # Then
+        self.assertEqual(0, dial.pointer())
+
+    def test_rotating_left_wraps_to_positive(self):
+        # Given
+        dial = Dial()
+
+        # When
+        dial.rotate("L", 1)
+
+        # Then
+        self.assertEqual(99, dial.pointer())
