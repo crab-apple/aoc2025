@@ -29,6 +29,10 @@ def create_boilerplate():
         with open("./src/aoc2025/solvers/" + day + "/problem2.py", "w") as f:
             f.write(solver_content)
 
+        Path("./inputs/" + day).mkdir(parents=True, exist_ok=True)
+        with open("./inputs/" + day + "/input", "a") as f:
+            f.write("TODO\n")
+
 
 def _list_days():
     return map(lambda i: "day{:02}".format(i + 1), range(12))
