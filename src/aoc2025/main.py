@@ -23,7 +23,7 @@ def create_boilerplate():
         solver_content = textwrap.dedent(
             """
         def solve(problem_input):
-            return "TODO"
+            return problem_input
             """
         ).lstrip()
         with open("./src/aoc2025/solvers/" + day + "/problem1.py", "w") as f:
@@ -32,7 +32,7 @@ def create_boilerplate():
             f.write(solver_content)
 
         Path("./inputs/" + day).mkdir(parents=True, exist_ok=True)
-        with open("./inputs/" + day + "/input", "a") as f:
+        with open("./inputs/" + day + "/input", "w") as f:
             f.write("TODO\n")
 
 

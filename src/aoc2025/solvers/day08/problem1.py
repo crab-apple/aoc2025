@@ -1,2 +1,2 @@
 def solve(problem_input):
-    return "TODO"
+    return problem_input
