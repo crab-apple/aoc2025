@@ -88,3 +88,54 @@ class TestDial(unittest.TestCase):
 
         # Then
         self.assertRaises(TypeError, dial.rotate, 1, 12)
+
+    def test_rotate_right_clicks_no_times(self):
+        # Given
+        dial = Dial()
+
+        # When
+        clicks = dial.rotate("R", 10)
+
+        # Then
+        self.assertEqual(0, clicks)
+
+    def test_rotate_right_clicks_one_time(self):
+        # Given
+        dial = Dial()
+
+        # When
+        clicks = dial.rotate("R", 110)
+
+        # Then
+        self.assertEqual(1, clicks)
+
+    def test_rotate_right_clicks_many_times(self):
+        # Given
+        dial = Dial()
+        clicks = dial.rotate("R", 10)
+
+        # When
+        clicks = dial.rotate("R", 123000)
+
+        # Then
+        self.assertEqual(1230, clicks)
+
+    def test_rotate_left_from_zero_clicks_no_times(self):
+        # Given
+        dial = Dial()
+
+        # When
+        clicks = dial.rotate("L", 5)
+
+        # Then
+        self.assertEqual(0, clicks)
+
+    def test_rotate_left_from_zero_clicks_many_times(self):
+        # Given
+        dial = Dial()
+
+        # When
+        clicks = dial.rotate("L", 250)
+
+        # Then
+        self.assertEqual(2, clicks)
