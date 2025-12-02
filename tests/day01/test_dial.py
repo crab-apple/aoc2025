@@ -1,5 +1,6 @@
-from aoc2025.solvers.day01.dial import Dial
 import unittest
+
+from src.aoc2025.solvers.day01.dial import Dial
 
 
 class TestDial(unittest.TestCase):
