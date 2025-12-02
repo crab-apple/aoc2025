@@ -2,7 +2,16 @@ import math
 
 
 def find_invalid_ids(rge):
-    return []
+    first = next_invalid_id(rge[0])
+    last = prev_invalid_id(rge[1])
+    result = []
+    if last is None:
+        return []
+    while first <= last:
+        result.append(first)
+        first = next_invalid_id(first + 1)
+
+    return result
 
 
 def next_invalid_id(number):

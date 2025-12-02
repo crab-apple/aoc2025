@@ -5,6 +5,7 @@ from src.aoc2025.solvers.day02.ids import (
     prev_invalid_id,
     extract_first_half,
     extract_second_half,
+    find_invalid_ids,
 )
 
 
@@ -58,3 +59,21 @@ class TestManipulators(unittest.TestCase):
     def test_second_half(self):
         self.assertEqual(34, extract_second_half(1234))
         self.assertEqual(456, extract_second_half(123456))
+
+
+class TestFindInvalidIds(unittest.TestCase):
+    def test_exercise_examples(self):
+        self.assertEqual([11, 22], find_invalid_ids((11, 22)))
+        self.assertEqual([99], find_invalid_ids((95, 115)))
+        self.assertEqual([1010], find_invalid_ids((998, 1012)))
+        self.assertEqual([1188511885], find_invalid_ids((1188511880, 1188511890)))
+        self.assertEqual([222222], find_invalid_ids((222220, 222224)))
+        self.assertEqual([], find_invalid_ids((1698522, 1698528)))
+        self.assertEqual([446446], find_invalid_ids((446443, 446449)))
+        self.assertEqual([38593859], find_invalid_ids((38593856, 38593862)))
+
+    def test_inverted_range(self):
+        self.assertEqual([], find_invalid_ids((123000, 100)))
+
+    def test_low_second_number(self):
+        self.assertEqual([], find_invalid_ids((1, 2)))
