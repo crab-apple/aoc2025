@@ -25,7 +25,7 @@ def create_boilerplate():
         solver_content = textwrap.dedent(
             """
         def solve(problem_input):
-            return problem_input
+            return -1
             """
         ).lstrip()
         with open("./src/aoc2025/solvers/" + day + "/problem1.py", "w") as f:
