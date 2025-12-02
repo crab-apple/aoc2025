@@ -17,6 +17,8 @@ def solve_all():
 
 
 def create_boilerplate():
+    Path("./src/aoc2025/solvers").mkdir(parents=True, exist_ok=True)
+    open("./src/aoc2025/solvers/__init__.py", "a").close()
     for day in _list_days():
         Path("./src/aoc2025/solvers/" + day).mkdir(parents=True, exist_ok=True)
         open("./src/aoc2025/solvers/" + day + "/__init__.py", "a").close()
@@ -39,6 +41,7 @@ def create_boilerplate():
         open("./tests/" + day + "/__init__.py", "a").close()
         test_content = textwrap.dedent(
             """
+            from aoc2025.solvers.{day}.problem{problem} import solve
             import unittest
 
 
@@ -53,9 +56,9 @@ def create_boilerplate():
                 """
         ).lstrip()
         with open("./tests/" + day + "/test_problem1.py", "w") as f:
-            f.write(test_content)
+            f.write(test_content.replace("{day}", day).replace("{problem}", "1"))
         with open("./tests/" + day + "/test_problem2.py", "w") as f:
-            f.write(test_content)
+            f.write(test_content.replace("{day}", day).replace("{problem}", "2"))
 
 
 def _list_days():

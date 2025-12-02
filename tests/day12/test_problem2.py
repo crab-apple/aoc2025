@@ -1,3 +1,4 @@
+from aoc2025.solvers.day12.problem2 import solve
 import unittest
 
 
