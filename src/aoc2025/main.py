@@ -1,18 +1,24 @@
-from pathlib import Path
-import textwrap
 import importlib
+import textwrap
+from pathlib import Path
 
 
 def solve_all():
     for day in _list_days():
         with open("./inputs/" + day + "/input", "r") as file:
             problem_input = file.read()
-        print(day + "-1:")
+
         module = importlib.import_module("aoc2025.solvers." + day + ".problem1")
-        print("  " + str(module.solve(problem_input)))
-        print(day + "-2:")
+        output = module.solve(problem_input)
+        if output != -1:
+            print(day + "-1:")
+            print("  " + str(output))
+
         module = importlib.import_module("aoc2025.solvers." + day + ".problem2")
-        print("  " + str(module.solve(problem_input)))
+        output = module.solve(problem_input)
+        if output != -1:
+            print(day + "-2:")
+            print("  " + str(output))
         print("")
 
 
