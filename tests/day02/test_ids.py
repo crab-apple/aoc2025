@@ -5,7 +5,6 @@ from src.aoc2025.solvers.day02.ids import (
     prev_invalid_id,
     extract_first_half,
     extract_second_half,
-    find_invalid_ids,
 )
 
 
@@ -23,6 +22,12 @@ class TestNextInvalidId(unittest.TestCase):
     def test_uneven_digits(self):
         self.assertEqual(100100, next_invalid_id(12345))
 
+    def test_zero(self):
+        self.assertEqual(11, next_invalid_id(0))
+
+    def test_single_digit(self):
+        self.assertEqual(11, next_invalid_id(3))
+
 
 class TestPrevInvalidId(unittest.TestCase):
 
@@ -37,6 +42,12 @@ class TestPrevInvalidId(unittest.TestCase):
 
     def test_uneven_digits(self):
         self.assertEqual(9999, prev_invalid_id(12345))
+
+    def test_zero(self):
+        self.assertIsNone(prev_invalid_id(0))
+
+    def test_single_digit(self):
+        self.assertIsNone(prev_invalid_id(3))
 
 
 class TestManipulators(unittest.TestCase):

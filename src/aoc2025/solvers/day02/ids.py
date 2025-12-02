@@ -24,7 +24,11 @@ def prev_invalid_id(number):
     Returns None if there is no invalid ID that satisfies these conditions"""
     if _is_invalid_id(number):
         return number
-    return _repeat(extract_first_half(next_invalid_id(number)) - 1)
+
+    half = extract_first_half(next_invalid_id(number))
+    if half == 1:
+        return None
+    return _repeat(half - 1)
 
 
 def extract_first_half(number):
