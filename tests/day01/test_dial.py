@@ -74,3 +74,17 @@ class TestDial(unittest.TestCase):
 
         # Then
         self.assertEqual(99, dial.pointer())
+
+    def test_rejects_invalid_rotation_direction(self):
+        # Given
+        dial = Dial()
+
+        # Then
+        self.assertRaises(ValueError, dial.rotate, "A", 12)
+
+    def test_rejects_invalid_rotation_type(self):
+        # Given
+        dial = Dial()
+
+        # Then
+        self.assertRaises(TypeError, dial.rotate, 1, 12)

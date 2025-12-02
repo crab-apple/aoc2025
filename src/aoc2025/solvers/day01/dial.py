@@ -8,8 +8,14 @@ class Dial:
 
     def rotate(self, direction, steps):
 
-        if direction == "L":
+        if direction == "R":
+            pass
+        elif direction == "L":
             steps = -steps
+        elif type(direction) is str:
+            raise ValueError("Invalid value: " + direction)
+        else:
+            raise TypeError("Invalid type: " + type(direction))
 
         self._pointer += steps
 
