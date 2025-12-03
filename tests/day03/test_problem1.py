@@ -3,14 +3,15 @@ import textwrap
 import unittest
 
 
-@unittest.skip("future problem")
 class TestProblem(unittest.TestCase):
 
     def test_example_input(self):
         example_input = textwrap.dedent(
             """
-        EXAMPLE
-        INPUT
+            987654321111111
+            811111111111119
+            234234234234278
+            818181911112111
         """
         ).strip()
-        self.assertEqual("TODO EXPECTED OUTPUT", solve(example_input))
+        self.assertEqual(357, solve(example_input))
