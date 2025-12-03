@@ -22,3 +22,6 @@ class TestBanks(unittest.TestCase):
 
     def test_several_digits_max_at_end(self):
         self.assertEqual(89, max_joltage(111811119))
+
+    def test_more_than_two_picks(self):
+        self.assertEqual(434234234278, max_joltage(234234234234278, 12))
