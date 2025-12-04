@@ -9,7 +9,7 @@ def find_invalid_ids(rge):
     result = []
     if last is None:
         return []
-    while first <= last:
+    while first <= last.as_int():
         result.append(first)
         first = next_invalid_id(first + 1).as_int()
 
@@ -21,9 +21,7 @@ def next_invalid_id(number):
 
     number1 = _num_digits(number)
     if not number1 % 2 == 0:
-        return InvalidId(
-            (math.floor(math.pow(10, _num_digits(number) // 2))), 2
-        )
+        return InvalidId((math.floor(math.pow(10, _num_digits(number) // 2))), 2)
 
     first_part = _extract_first_part(number)
     invalid_id_from_first_part = InvalidId(first_part, 2)
@@ -40,17 +38,14 @@ def prev_invalid_id(number):
     invalid_id = next_invalid_id(number)
 
     if invalid_id.as_int() == number:
-        return number
+        return invalid_id
 
-    result = invalid_id.prev()
-    if result is None:
-        return None
-    return result.as_int()
+    return invalid_id.prev()
 
 
 def _extract_first_part(number, num_parts=2):
     num_digits = _num_digits(number)
-    return int(str(number)[0: (num_digits // num_parts)])
+    return int(str(number)[0 : (num_digits // num_parts)])
 
 
 def _num_digits(number):

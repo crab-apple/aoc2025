@@ -31,16 +31,16 @@ class TestNextInvalidId(unittest.TestCase):
 class TestPrevInvalidId(unittest.TestCase):
 
     def test_even_digits_equal_halves(self):
-        self.assertEqual(1212, prev_invalid_id(1212))
+        self.assertEqual(1212, prev_invalid_id(1212).as_int())
 
     def test_even_digits_first_half_greater(self):
-        self.assertEqual(653653, prev_invalid_id(654321))
+        self.assertEqual(653653, prev_invalid_id(654321).as_int())
 
     def test_even_digits_first_half_lower(self):
-        self.assertEqual(123123, prev_invalid_id(123456))
+        self.assertEqual(123123, prev_invalid_id(123456).as_int())
 
     def test_uneven_digits(self):
-        self.assertEqual(9999, prev_invalid_id(12345))
+        self.assertEqual(9999, prev_invalid_id(12345).as_int())
 
     def test_zero(self):
         self.assertIsNone(prev_invalid_id(0))
