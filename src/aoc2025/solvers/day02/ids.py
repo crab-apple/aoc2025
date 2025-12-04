@@ -4,14 +4,14 @@ from src.aoc2025.solvers.day02.invalid_id import InvalidId
 
 
 def find_invalid_ids(rge):
-    first = next_invalid_id(rge[0]).as_int()
+    first = next_invalid_id(rge[0])
     last = prev_invalid_id(rge[1])
     result = []
     if last is None:
         return []
-    while first <= last.as_int():
-        result.append(first)
-        first = next_invalid_id(first + 1).as_int()
+    while first.as_int() <= last.as_int():
+        result.append(first.as_int())
+        first = first.next()
 
     return result
 
