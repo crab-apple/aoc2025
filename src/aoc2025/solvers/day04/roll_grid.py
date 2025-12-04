@@ -3,6 +3,17 @@ class RollGrid:
         self._lines = input_str.splitlines()
         self._height = len(self._lines)
         self._width = len(self._lines[0])
+        self._memory = dict()
+        self._accessible = set()
+        self._init_memory()
+
+    def _init_memory(self):
+        for row_num in range(0, self._height):
+            for col_num in range(0, self._width):
+                surrounding_rolls = self._count_surrounding_rolls(row_num, col_num)
+                self._memory[(row_num, col_num)] = surrounding_rolls
+                if surrounding_rolls < 4:
+                    self._accessible.add((row_num, col_num))
 
     def count_accessible(self):
         count = 0
