@@ -10,6 +10,8 @@ class RollGrid:
     def _init_memory(self):
         for row_num in range(0, self._height):
             for col_num in range(0, self._width):
+                if not self._is_roll(row_num, col_num):
+                    continue
                 surrounding_rolls = self._count_surrounding_rolls(row_num, col_num)
                 self._memory[(row_num, col_num)] = surrounding_rolls
                 if surrounding_rolls < 4:
@@ -28,6 +30,14 @@ class RollGrid:
 
     def __str__(self):
         return "Grid with width {w}, height {h}".format(w=self._width, h=self._height)
+
+    def print_grid(self):
+        result = ""
+        for row_num in range(0, self._height):
+            for col_num in range(0, self._width):
+                result += "@" if (row_num, col_num) in self._memory else "."
+            result += "\n"
+        return result
 
     def _is_accessible(self, row_num, col_num):
         return self._count_surrounding_rolls(row_num, col_num) < 4
