@@ -53,7 +53,20 @@ class RollGrid:
         return count
 
     def remove_accessible(self):
-        pass
+        new_accessible = set()
+
+        for accessible_roll in self._accessible:
+            del self._memory[accessible_roll]
+
+        for accessible_roll in self._accessible:
+            for surrounding in self._surrounding_positions(accessible_roll):
+                if not surrounding in self._memory:
+                    continue
+                self._memory[surrounding] -= 1
+                if self._memory[surrounding] < 4:
+                    new_accessible.add(surrounding)
+        self._accessible.clear()
+        self._accessible = new_accessible
 
     def _surrounding_positions(self, position):
         result = set()
