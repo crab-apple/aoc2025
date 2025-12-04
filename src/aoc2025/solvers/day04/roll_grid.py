@@ -18,15 +18,7 @@ class RollGrid:
                     self._accessible.add((row_num, col_num))
 
     def count_accessible(self):
-        count = 0
-        for row_num in range(0, self._height):
-            for col_num in range(0, self._width):
-                if self._is_roll(row_num, col_num) and self._is_accessible(
-                    row_num, col_num
-                ):
-                    count += 1
-        # return 13
-        return count
+        return len(self._accessible)
 
     def __str__(self):
         return "Grid with width {w}, height {h}".format(w=self._width, h=self._height)
@@ -38,9 +30,6 @@ class RollGrid:
                 result += "@" if (row_num, col_num) in self._memory else "."
             result += "\n"
         return result
-
-    def _is_accessible(self, row_num, col_num):
-        return self._count_surrounding_rolls(row_num, col_num) < 4
 
     def _is_roll(self, row_num, col_num):
         return self._lines[row_num][col_num] == "@"
