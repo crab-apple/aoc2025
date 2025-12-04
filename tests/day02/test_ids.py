@@ -27,6 +27,9 @@ class TestNextInvalidId(unittest.TestCase):
     def test_single_digit(self):
         self.assertEqual(11, next_invalid_id(3).as_int())
 
+    def test_more_than_two_parts(self):
+        self.assertEqual(656565, next_invalid_id(654321, 3).as_int())
+
 
 class TestPrevInvalidId(unittest.TestCase):
 
@@ -47,6 +50,9 @@ class TestPrevInvalidId(unittest.TestCase):
 
     def test_single_digit(self):
         self.assertIsNone(prev_invalid_id(3))
+
+    def test_more_than_two_parts(self):
+        self.assertEqual(646464, prev_invalid_id(654321, 3).as_int())
 
 
 class TestFindInvalidIds(unittest.TestCase):
