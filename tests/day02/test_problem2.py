@@ -1,16 +1,10 @@
-from aoc2025.solvers.day02.problem2 import solve
-import textwrap
 import unittest
 
+from src.aoc2025.solvers.day02.problem2 import solve
 
-@unittest.skip("future problem")
+
 class TestProblem(unittest.TestCase):
 
     def test_example_input(self):
-        example_input = textwrap.dedent(
-            """
-        EXAMPLE
-        INPUT
-        """
-        ).strip()
-        self.assertEqual("TODO EXPECTED OUTPUT", solve(example_input))
+        example_input = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
+        self.assertEqual(4174379265, solve(example_input))

@@ -3,6 +3,14 @@ import math
 from src.aoc2025.solvers.day02.invalid_id import InvalidId
 
 
+def find_invalid_ids(rge):
+    result = set()
+    for num_parts in range(2, len(str(rge))):
+        result = result.union(set(find_invalid_ids_given_num_parts(rge, num_parts)))
+
+    return result
+
+
 def find_invalid_ids_given_num_parts(rge, num_parts=2):
     first = next_invalid_id(rge[0], num_parts)
     last = prev_invalid_id(rge[1], num_parts)

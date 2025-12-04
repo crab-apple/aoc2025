@@ -83,7 +83,15 @@ class TestFindInvalidIds(unittest.TestCase):
         self.assertEqual([11, 22], find_invalid_ids_given_num_parts((11, 22), 2))
         self.assertEqual([99], find_invalid_ids_given_num_parts((95, 115), 2))
         self.assertEqual([111], find_invalid_ids_given_num_parts((95, 115), 3))
-        self.assertEqual([], find_invalid_ids_given_num_parts((2121212118, 2121212124), 2))
-        self.assertEqual([], find_invalid_ids_given_num_parts((2121212118, 2121212124), 3))
-        self.assertEqual([], find_invalid_ids_given_num_parts((2121212118, 2121212124), 4))
-        self.assertEqual([2121212121], find_invalid_ids_given_num_parts((2121212118, 2121212124), 5))
+        self.assertEqual(
+            [], find_invalid_ids_given_num_parts((2121212118, 2121212124), 2)
+        )
+        self.assertEqual(
+            [], find_invalid_ids_given_num_parts((2121212118, 2121212124), 3)
+        )
+        self.assertEqual(
+            [], find_invalid_ids_given_num_parts((2121212118, 2121212124), 4)
+        )
+        self.assertEqual(
+            [2121212121], find_invalid_ids_given_num_parts((2121212118, 2121212124), 5)
+        )
