@@ -22,8 +22,8 @@ def next_invalid_id(number):
     if not _is_even(_num_digits(number)):
         return _repeat(math.floor(math.pow(10, _num_digits(number) // 2)))
 
-    first_half = extract_first_half(number)
-    second_half = extract_second_half(number)
+    first_half = _extract_first_half(number)
+    second_half = _extract_second_half(number)
     if first_half < second_half:
         return InvalidId(first_half + 1, 2).as_int()
     return InvalidId(first_half, 2).as_int()
@@ -36,18 +36,18 @@ def prev_invalid_id(number):
     if _is_invalid_id(number):
         return number
 
-    half = extract_first_half(next_invalid_id(number))
+    half = _extract_first_half(next_invalid_id(number))
     if half == 1:
         return None
     return InvalidId(half - 1, 2).as_int()
 
 
-def extract_first_half(number):
+def _extract_first_half(number):
     num_digits = _num_digits(number)
     return int(str(number)[0 : (num_digits // 2)])
 
 
-def extract_second_half(number):
+def _extract_second_half(number):
     num_digits = _num_digits(number)
     return int(str(number)[(num_digits // 2) : num_digits])
 
@@ -57,9 +57,9 @@ def _repeat(number):
 
 
 def _is_invalid_id(number):
-    return len(str(number)) % 2 == 0 and extract_first_half(
+    return len(str(number)) % 2 == 0 and _extract_first_half(
         number
-    ) == extract_second_half(number)
+    ) == _extract_second_half(number)
 
 
 def _num_digits(number):

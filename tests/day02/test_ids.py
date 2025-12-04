@@ -3,8 +3,6 @@ import unittest
 from src.aoc2025.solvers.day02.ids import (
     next_invalid_id,
     prev_invalid_id,
-    extract_first_half,
-    extract_second_half,
     find_invalid_ids,
 )
 
@@ -49,16 +47,6 @@ class TestPrevInvalidId(unittest.TestCase):
 
     def test_single_digit(self):
         self.assertIsNone(prev_invalid_id(3))
-
-
-class TestManipulators(unittest.TestCase):
-    def test_first_half(self):
-        self.assertEqual(12, extract_first_half(1234))
-        self.assertEqual(123, extract_first_half(123456))
-
-    def test_second_half(self):
-        self.assertEqual(34, extract_second_half(1234))
-        self.assertEqual(456, extract_second_half(123456))
 
 
 class TestFindInvalidIds(unittest.TestCase):
