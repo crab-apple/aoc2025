@@ -37,14 +37,15 @@ def prev_invalid_id(number):
 
     Returns None if there is no invalid ID that satisfies these conditions"""
 
-    half = _extract_first_part(next_invalid_id(number).as_int())
+    invalid_id = next_invalid_id(number)
 
-    if InvalidId(half, 2).as_int() == number:
+    if invalid_id.as_int() == number:
         return number
 
-    if half == 1:
+    result = invalid_id.prev()
+    if result is None:
         return None
-    return InvalidId(half - 1, 2).as_int()
+    return result.as_int()
 
 
 def _extract_first_part(number, num_parts=2):
