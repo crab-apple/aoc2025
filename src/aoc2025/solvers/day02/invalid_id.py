@@ -13,3 +13,6 @@ class InvalidId:
         if self._base == 1:
             return None
         return InvalidId(self._base - 1, self._repeats)
+
+    def __str__(self):
+        return str(self.as_int())

@@ -3,9 +3,9 @@ import math
 from src.aoc2025.solvers.day02.invalid_id import InvalidId
 
 
-def find_invalid_ids(rge):
-    first = next_invalid_id(rge[0])
-    last = prev_invalid_id(rge[1])
+def find_invalid_ids_given_num_parts(rge, num_parts=2):
+    first = next_invalid_id(rge[0], num_parts)
+    last = prev_invalid_id(rge[1], num_parts)
     result = []
     if last is None:
         return []
@@ -19,9 +19,12 @@ def find_invalid_ids(rge):
 def next_invalid_id(number, num_parts=2):
     """Returns the lowest invalid ID that is equal or greater to the given number."""
 
-    if not _num_digits(number) % 2 == 0:
+    if _num_digits(number) < num_parts:
+        return InvalidId(1, num_parts)
+
+    if not _num_digits(number) % num_parts == 0:
         return InvalidId(
-            (math.floor(math.pow(10, _num_digits(number) // 2))), num_parts
+            (math.floor(math.pow(10, _num_digits(number) // num_parts))), num_parts
         )
 
     first_part = _extract_first_part(number, num_parts)

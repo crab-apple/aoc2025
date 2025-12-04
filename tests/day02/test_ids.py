@@ -3,7 +3,7 @@ import unittest
 from src.aoc2025.solvers.day02.ids import (
     next_invalid_id,
     prev_invalid_id,
-    find_invalid_ids,
+    find_invalid_ids_given_num_parts,
 )
 
 
@@ -54,20 +54,36 @@ class TestPrevInvalidId(unittest.TestCase):
     def test_more_than_two_parts(self):
         self.assertEqual(646464, prev_invalid_id(654321, 3).as_int())
 
+    def test_failing_example(self):
+        self.assertEqual(111, prev_invalid_id(115, 3).as_int())
+
 
 class TestFindInvalidIds(unittest.TestCase):
     def test_exercise_examples(self):
-        self.assertEqual([11, 22], find_invalid_ids((11, 22)))
-        self.assertEqual([99], find_invalid_ids((95, 115)))
-        self.assertEqual([1010], find_invalid_ids((998, 1012)))
-        self.assertEqual([1188511885], find_invalid_ids((1188511880, 1188511890)))
-        self.assertEqual([222222], find_invalid_ids((222220, 222224)))
-        self.assertEqual([], find_invalid_ids((1698522, 1698528)))
-        self.assertEqual([446446], find_invalid_ids((446443, 446449)))
-        self.assertEqual([38593859], find_invalid_ids((38593856, 38593862)))
+        self.assertEqual([11, 22], find_invalid_ids_given_num_parts((11, 22)))
+        self.assertEqual([99], find_invalid_ids_given_num_parts((95, 115)))
+        self.assertEqual([1010], find_invalid_ids_given_num_parts((998, 1012)))
+        self.assertEqual(
+            [1188511885], find_invalid_ids_given_num_parts((1188511880, 1188511890))
+        )
+        self.assertEqual([222222], find_invalid_ids_given_num_parts((222220, 222224)))
+        self.assertEqual([], find_invalid_ids_given_num_parts((1698522, 1698528)))
+        self.assertEqual([446446], find_invalid_ids_given_num_parts((446443, 446449)))
+        self.assertEqual(
+            [38593859], find_invalid_ids_given_num_parts((38593856, 38593862))
+        )
 
     def test_inverted_range(self):
-        self.assertEqual([], find_invalid_ids((123000, 100)))
+        self.assertEqual([], find_invalid_ids_given_num_parts((123000, 100)))
 
     def test_low_second_number(self):
-        self.assertEqual([], find_invalid_ids((1, 2)))
+        self.assertEqual([], find_invalid_ids_given_num_parts((1, 2)))
+
+    def test_exercise_examples_different_num_parts(self):
+        self.assertEqual([11, 22], find_invalid_ids_given_num_parts((11, 22), 2))
+        self.assertEqual([99], find_invalid_ids_given_num_parts((95, 115), 2))
+        self.assertEqual([111], find_invalid_ids_given_num_parts((95, 115), 3))
+        self.assertEqual([], find_invalid_ids_given_num_parts((2121212118, 2121212124), 2))
+        self.assertEqual([], find_invalid_ids_given_num_parts((2121212118, 2121212124), 3))
+        self.assertEqual([], find_invalid_ids_given_num_parts((2121212118, 2121212124), 4))
+        self.assertEqual([2121212121], find_invalid_ids_given_num_parts((2121212118, 2121212124), 5))
