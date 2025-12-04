@@ -33,10 +33,12 @@ def prev_invalid_id(number):
     """Returns the largest invalid ID that is equal or lower than the given number.
 
     Returns None if there is no invalid ID that satisfies these conditions"""
-    if _is_invalid_id(number):
-        return number
 
     half = _extract_first_half(next_invalid_id(number))
+
+    if InvalidId(half, 2).as_int() == number:
+        return number
+
     if half == 1:
         return None
     return InvalidId(half - 1, 2).as_int()
@@ -54,12 +56,6 @@ def _extract_second_half(number):
 
 def _repeat(number):
     return int(str(number) + str(number))
-
-
-def _is_invalid_id(number):
-    return len(str(number)) % 2 == 0 and _extract_first_half(
-        number
-    ) == _extract_second_half(number)
 
 
 def _num_digits(number):
