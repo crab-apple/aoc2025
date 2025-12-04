@@ -45,17 +45,27 @@ class RollGrid:
 
     def _count_surrounding_rolls(self, position):
         count = 0
+
+        for other_position in self._surrounding_positions(position):
+            if self._is_roll(other_position):
+                count += 1
+
+        return count
+
+    def remove_accessible(self):
+        pass
+
+    def _surrounding_positions(self, position):
+        result = set()
         for r in range(position.row_num - 1, position.row_num + 2):
             for c in range(position.col_num - 1, position.col_num + 2):
                 other_position = Position(r, c)
                 if other_position == position:
                     continue
-                if self._is_in_grid(other_position) and self._is_roll(other_position):
-                    count += 1
-        return count
-
-    def remove_accessible(self):
-        pass
+                if not self._is_in_grid(other_position):
+                    continue
+                result.add(other_position)
+        return result
 
 
 Position = namedtuple("Position", ["row_num", "col_num"])
