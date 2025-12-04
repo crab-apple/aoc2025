@@ -1,5 +1,7 @@
 import math
 
+from src.aoc2025.solvers.day02.invalid_id import InvalidId
+
 
 def find_invalid_ids(rge):
     first = next_invalid_id(rge[0])
@@ -23,8 +25,8 @@ def next_invalid_id(number):
     first_half = extract_first_half(number)
     second_half = extract_second_half(number)
     if first_half < second_half:
-        return _repeat(first_half + 1)
-    return _repeat(first_half)
+        return InvalidId(first_half + 1, 2).as_int()
+    return InvalidId(first_half, 2).as_int()
 
 
 def prev_invalid_id(number):
@@ -37,7 +39,7 @@ def prev_invalid_id(number):
     half = extract_first_half(next_invalid_id(number))
     if half == 1:
         return None
-    return _repeat(half - 1)
+    return InvalidId(half - 1, 2).as_int()
 
 
 def extract_first_half(number):
