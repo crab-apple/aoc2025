@@ -16,3 +16,15 @@ class TestRangeMerge(unittest.TestCase):
             [(1, 10), (20, 30)],
             merge_ranges([(1, 10), (20, 25), (22, 30)])
         )
+
+    def test_subsuming_ranges(self):
+        self.assertEqual(
+            [(1, 10), (20, 30)],
+            merge_ranges([(1, 10), (20, 30), (22, 25)])
+        )
+
+    def test_unordered_ranges(self):
+        self.assertEqual(
+            [(1, 10), (20, 30)],
+            merge_ranges([(20, 30), (1, 10), (22, 25)])
+        )
