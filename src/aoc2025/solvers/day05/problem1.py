@@ -1,8 +1,12 @@
 def solve(problem_input):
     ranges, ingredients = parse_ingredient_database(problem_input)
-    print(ranges)
-    print(ingredients)
-    return 3
+    count = 0
+    for i in ingredients:
+        for r in ranges:
+            if r[0] <= i <= r[1]:
+                count += 1
+                break
+    return count
 
 
 def parse_ingredient_database(problem_input):
