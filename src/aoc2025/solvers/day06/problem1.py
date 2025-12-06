@@ -1,33 +1,9 @@
-import re
+from src.aoc2025.solvers.day06.parsing import parse_input
 
 
 def solve(problem_input):
-    lines = parse_input(problem_input)
-
     result = 0
-    for i in range(0, len(lines[0])):
-        operators = []
-        for line_num in range(0, len(lines) - 1):
-            operators.append(int(lines[line_num][i]))
-        symbol = lines[-1][i]
-        if symbol == "+":
-            result += sum(operators)
-        else:
-            result += mul(operators)
+    for operation in parse_input(problem_input):
+        result += operation.execute()
 
     return result
-
-
-def mul(operators):
-    result = 1
-    for operator in operators:
-        result *= operator
-    return result
-
-
-def parse_input(problem_input):
-    return list(map(lambda l: _split_line(l), problem_input.splitlines()))
-
-
-def _split_line(l):
-    return re.split(r" +", l.strip())

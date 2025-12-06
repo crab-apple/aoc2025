@@ -23,14 +23,12 @@ class TestParsing(unittest.TestCase):
 
     def test_find_breakpoints(self):
         # Given
-        the_input = textwrap.dedent(
-            """\
-        123 328  51 64 
-         45 64  387 23 
-          6 98  215 314
-        *   +   *   +  
-        """
-        )
+        the_input = [
+            "123 328  51 64 ",
+            " 45 64  387 23 ",
+            "  6 98  215 314",
+            "*   +   *   +  ",
+        ]
 
         # When
         breakpoints = find_breakpoints(the_input)

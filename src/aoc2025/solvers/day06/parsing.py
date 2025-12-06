@@ -9,9 +9,7 @@ def find_whitespace(line):
     return result
 
 
-def find_breakpoints(problem_input):
-    lines = problem_input.splitlines()
-
+def find_breakpoints(lines):
     # For sanity, verify that all lines have the same length
     lengths = set(map(lambda l: len(l), lines))
     if len(lengths) != 1:
@@ -26,8 +24,10 @@ def find_breakpoints(problem_input):
 
 def parse_input(problem_input):
     lines = problem_input.splitlines()
+    lines = pad_to_equal_length(lines)
+
     line_len = len(lines[0])
-    breakpoints = list(reversed(find_breakpoints(problem_input)))
+    breakpoints = list(reversed(find_breakpoints(lines)))
 
     breakpoints.append(-1)
 
@@ -40,4 +40,13 @@ def parse_input(problem_input):
         operands = chunks[0:-1]
         operator = chunks[-1].strip()
         result.append(Operation(operands, operator))
+    return result
+
+
+def pad_to_equal_length(lines):
+    max_len = max(map(lambda l: len(l), lines))
+
+    result = []
+    for line in lines:
+        result.append(line.ljust(max_len))
     return result
