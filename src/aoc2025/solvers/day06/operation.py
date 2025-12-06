@@ -16,6 +16,12 @@ class Operation:
         else:
             return mul(map(int, self._operands))
 
+    def uncephalopodize(self):
+        new_operands = []
+        for i in range(0, len(self._operands[0])):
+            new_operands.append("".join(map(lambda o: o[i], self._operands)))
+        return Operation(new_operands, self._operator)
+
 
 def mul(numbers):
     result = 1
