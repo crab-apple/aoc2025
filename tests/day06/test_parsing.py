@@ -1,6 +1,7 @@
+import textwrap
 import unittest
 
-from src.aoc2025.solvers.day06.parsing import find_whitespace
+from src.aoc2025.solvers.day06.parsing import find_whitespace, find_breakpoints
 
 
 class TestParsing(unittest.TestCase):
@@ -14,3 +15,20 @@ class TestParsing(unittest.TestCase):
 
         # Then
         self.assertEqual({0, 3, 6, 7, 11, 14}, space_positions)
+
+    def test_find_breakpoints(self):
+        # Given
+        the_input = textwrap.dedent(
+            """\
+        123 328  51 64 
+         45 64  387 23 
+          6 98  215 314
+        *   +   *   +  
+        """
+        )
+
+        # When
+        breakpoints = find_breakpoints(the_input)
+
+        # Then
+        self.assertEqual([3, 7, 11], breakpoints)
