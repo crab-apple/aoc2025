@@ -31,4 +31,4 @@ class TestProblem(unittest.TestCase):
         425,690,689 
         """
         ).strip()
-        self.assertEqual(40, solve(example_input))
+        self.assertEqual(40, solve(example_input, 10))
