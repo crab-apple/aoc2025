@@ -29,7 +29,7 @@ def solve(problem_input, num_connections=1000):
     three_largest_circuit_sizes = sorted(circuit_sizes.values(), reverse=True)[:3]
 
     return (
-            three_largest_circuit_sizes[0]
-            * three_largest_circuit_sizes[1]
-            * three_largest_circuit_sizes[2]
+        three_largest_circuit_sizes[0]
+        * three_largest_circuit_sizes[1]
+        * three_largest_circuit_sizes[2]
     )
