@@ -5,7 +5,12 @@ class DisjointSetForest:
             self._nodes.append(i)
 
     def find(self, i):
-        return i if self._nodes[i] == i else self.find(self._nodes[i])
+        parent = self._nodes[i]
+        if parent == i:
+            return i
+        root = self.find(parent)
+        self._nodes[i] = root
+        return root
 
     def merge(self, a, b):
         root_a = self.find(a)
