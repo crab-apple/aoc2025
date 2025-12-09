@@ -1,16 +1,22 @@
-from aoc2025.solvers.day09.problem1 import solve
 import textwrap
 import unittest
 
+from src.aoc2025.solvers.day09.problem1 import solve
 
-@unittest.skip("future problem")
+
 class TestProblem(unittest.TestCase):
 
     def test_example_input(self):
         example_input = textwrap.dedent(
             """
-        EXAMPLE
-        INPUT
+            7,1
+            11,1
+            11,7
+            9,7
+            9,5
+            2,5
+            2,3
+            7,3
         """
         ).strip()
-        self.assertEqual("TODO EXPECTED OUTPUT", solve(example_input))
+        self.assertEqual(50, solve(example_input))
