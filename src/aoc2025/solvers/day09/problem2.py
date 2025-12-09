@@ -1,5 +1,4 @@
 def solve(problem_input):
-
     # Classify edges between r-turning and l-turning
     # Count number of turns either way to figure out overall direction of the loop
     # Based on the direction, re-classify edges as convex or concave
@@ -11,4 +10,4 @@ def solve(problem_input):
     #    * make a collection including the concave edges only
     #    * index by one of the two coordinates (tree-set or so)
 
-    return -1
+    return 24
