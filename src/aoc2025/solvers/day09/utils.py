@@ -12,7 +12,10 @@ def area_between(tile_a, tile_b):
 
 
 def determine_turn_direction(tile_prev, tile_this, tile_next):
-    directions = (_determine_direction(tile_prev, tile_this), _determine_direction(tile_this, tile_next))
+    directions = (
+        _determine_direction(tile_prev, tile_this),
+        _determine_direction(tile_this, tile_next),
+    )
     match directions:
         case ("N", "E"):
             return "R"
