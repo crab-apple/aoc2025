@@ -23,4 +23,8 @@ def shortest_path(goal, buttons):
             if next_node == goal:
                 return next_node_cost
 
+            if next_node not in graph or graph[next_node] > next_node_cost:
+                graph[next_node] = next_node_cost
+                pending.append(next_node)
+
     raise Exception("Destination not found")

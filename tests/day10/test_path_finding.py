@@ -14,3 +14,9 @@ class TestPathFinding(unittest.TestCase):
         length = shortest_path({2}, [{1, 2, 3}, {2}])
 
         self.assertEqual(1, length)
+
+    def test_finds_path_of_length_several(self):
+        length = shortest_path(
+            {3}, [{0, 2, 3, 4}, {2, 3}, {0, 4}, {0, 1, 2}, {1, 2, 3, 4}]
+        )
+        self.assertEqual(3, length)
