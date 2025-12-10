@@ -20,7 +20,9 @@ def _parse_machine(line):
     for button_str in button_strs:
         buttons.append(set(map(int, button_str[1:-1].split(","))))
 
-    return Machine(lights, buttons)
+    joltages = list(map(int, joltage_str[1:-1].split(",")))
+
+    return Machine(lights, buttons, joltages)
 
 
-Machine = namedtuple("Machine", ["goal", "buttons"])
+Machine = namedtuple("Machine", ["goal", "buttons", "joltages"])
