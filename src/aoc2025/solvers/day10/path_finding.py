@@ -2,29 +2,39 @@ from collections import deque
 
 
 def shortest_path(goal, buttons):
-    goal = frozenset(goal)
-    buttons = list(map(frozenset, buttons))
+    return _PathFinder(goal, buttons).shortest_path()
 
-    start = frozenset()
-    pending = deque()
 
-    if start == goal:
-        return 0
+class _PathFinder:
+    def __init__(self, goal, buttons):
+        self._goal = frozenset(goal)
+        self._buttons = list(map(frozenset, buttons))
 
-    graph = {start: 0}
-    pending.append(start)
+        self._pending_visit = deque()
+        self._known = {}
 
-    while pending:
-        current_node = pending.popleft()
-        current_node_cost = graph[current_node]
-        for button in buttons:
-            next_node = current_node.symmetric_difference(button)
-            next_node_cost = current_node_cost + 1
-            if next_node == goal:
-                return next_node_cost
+        start = frozenset()
+        self._known[start] = 0
+        self._pending_visit.append(start)
 
-            if next_node not in graph or graph[next_node] > next_node_cost:
-                graph[next_node] = next_node_cost
-                pending.append(next_node)
+    def shortest_path(self):
+        while self._pending_visit:
+            current_node = self._pending_visit.popleft()
+            if current_node == self._goal:
+                return self._known[current_node]
 
-    raise Exception("Destination not found")
+            self._visit(current_node)
+
+        raise Exception("Destination not found")
+
+    def _visit(self, node):
+        for button in self._buttons:
+            self._push_button(node, button)
+
+    def _push_button(self, node, button):
+        next_node = node.symmetric_difference(button)
+        next_node_cost = self._known[node] + 1
+
+        if next_node not in self._known or self._known[next_node] > next_node_cost:
+            self._known[next_node] = next_node_cost
+            self._pending_visit.append(next_node)

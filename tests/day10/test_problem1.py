@@ -1,6 +1,8 @@
-from src.aoc2025.solvers.day10.problem1 import solve
+import os
 import textwrap
 import unittest
+
+from src.aoc2025.solvers.day10.problem1 import solve
 
 
 class TestProblem(unittest.TestCase):
@@ -14,3 +16,10 @@ class TestProblem(unittest.TestCase):
             """
         ).strip()
         self.assertEqual(7, solve(example_input))
+
+    def test_real_input(self):
+        dirname = os.path.dirname(__file__)
+        input_file_path = os.path.join(dirname, "../../inputs/day10/input")
+        with open(input_file_path, "r") as file:
+            problem_input = file.read()
+        self.assertEqual(441, solve(problem_input))
