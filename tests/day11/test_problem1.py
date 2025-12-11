@@ -29,4 +29,4 @@ class TestProblem(unittest.TestCase):
         input_file_path = os.path.join(dirname, "../../inputs/day11/input")
         with open(input_file_path, "r") as file:
             problem_input = file.read()
-        self.assertIsNotNone(solve(problem_input))
+        self.assertEqual(791, solve(problem_input))
