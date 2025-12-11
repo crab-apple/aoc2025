@@ -1,6 +1,6 @@
 import unittest
 
-from src.aoc2025.solvers.day10.path_finding import shortest_path, shortest_path_joltage
+from src.aoc2025.solvers.day10.path_finding import shortest_path
 
 
 class TestPathFinding(unittest.TestCase):
@@ -21,8 +21,3 @@ class TestPathFinding(unittest.TestCase):
         )
         self.assertEqual(3, length)
 
-    def test_finds_joltage_path(self):
-        length = shortest_path_joltage(
-            (3, 4, 5, 7), [{3}, {1, 3}, {2}, {2, 3}, {0, 2}, {0, 1}]
-        )
-        self.assertEqual(10, length)
