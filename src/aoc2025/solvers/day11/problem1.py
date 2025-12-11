@@ -12,9 +12,11 @@ def solve(problem_input):
 
     return result
 
+
 def _count_paths(destination, input_graph):
     cache = {}
     return _count_paths_memoized(destination, input_graph, cache)
+
 
 def _count_paths_memoized(destination, input_graph, cache):
     if destination == "you":
