@@ -1,6 +1,8 @@
-from src.aoc2025.solvers.day10.problem2 import solve
+import os
 import textwrap
 import unittest
+
+from src.aoc2025.solvers.day10.problem2 import solve
 
 
 class TestProblem(unittest.TestCase):
@@ -14,3 +16,18 @@ class TestProblem(unittest.TestCase):
             """
         ).strip()
         self.assertEqual(33, solve(example_input))
+
+    def test_performance(self):
+        dirname = os.path.dirname(__file__)
+        input_file_path = os.path.join(dirname, "../../inputs/day10/input")
+        with open(input_file_path, "r") as file:
+            problem_input = file.read()
+
+        problem_input = _first_n_lines(problem_input, 1)
+        print(problem_input)
+
+        self.assertIsNotNone(solve(problem_input))
+
+
+def _first_n_lines(problem_input, n):
+    return "\n".join(problem_input.splitlines()[0:n])
