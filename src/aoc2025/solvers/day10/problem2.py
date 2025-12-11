@@ -1,5 +1,5 @@
 from src.aoc2025.solvers.day10.input_parsing import parse_input
-from src.aoc2025.solvers.day10.path_finding import shortest_path_joltage
+from src.aoc2025.solvers.day10.joltage_path_finding import shortest_path_joltage
 
 
 def solve(problem_input):

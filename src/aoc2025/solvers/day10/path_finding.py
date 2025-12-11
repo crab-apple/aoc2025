@@ -5,10 +5,6 @@ def shortest_path(goal, buttons):
     return _PathFinder(goal, buttons).shortest_path()
 
 
-def shortest_path_joltage(joltage, buttons):
-    return _JoltagePathFinder(joltage, buttons).shortest_path()
-
-
 class _PathFinder:
     def __init__(self, goal, buttons):
         self._goal = frozenset(goal)
@@ -42,13 +38,3 @@ class _PathFinder:
         if next_node not in self._known or self._known[next_node] > next_node_cost:
             self._known[next_node] = next_node_cost
             self._pending_visit.append(next_node)
-
-
-class _JoltagePathFinder:
-    def __init__(self, goal, buttons):
-        self._goal = tuple(goal)
-        self._buttons = list(map(frozenset, buttons))
-
-
-    def shortest_path(self):
-        return 11
